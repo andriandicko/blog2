@@ -37,7 +37,7 @@ class AuthController extends Controller
     public function signUp(Request $request){
         $data = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:user,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
         ]);
         $data['password'] = Hash::make($request->password);
@@ -46,12 +46,13 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+
         if(User::create($data)){
             if(Auth::attempt($login)){
                 return redirect("/");
             }else{
                 return redirect()->route('login')->with('message', 'Email atau Password salah');
             }
-        };
+        }
     }
 }

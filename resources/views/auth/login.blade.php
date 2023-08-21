@@ -24,7 +24,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
                                     </div>
                                     @if ($message = session()->get('message'))
-                                        <small>{{ $message }}</small>
+                                        <div class="small text-danger">{{ $message }}</div>
                                     @endif
                                     <form class="user" action="{{ route('login.post') }}" method="post">
                                         @csrf
@@ -32,17 +32,17 @@
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
+                                                @error('email')
+                                                    <div class="small text-danger"> {{$message}} </div>
+                                                @enderror
                                         </div>
-                                        @error('email')
-                                            <small> {{$message}} </small>
-                                        @enderror
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
+                                                @error('password')
+                                                    <div class="small text-danger"> {{$message}} </div>
+                                                @enderror
                                         </div>
-                                        @error('password')
-                                            <small> {{$message}} </small>
-                                        @enderror
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">

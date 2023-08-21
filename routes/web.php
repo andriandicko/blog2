@@ -23,7 +23,7 @@ Route::group(['middleware' => ['guest']], function() {
     Route::post('/login/post', [AuthController::class, 'signIn'])->name('login.post');
 
     Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/register/post', [AuthController::class, 'singUp'])->name('register.post');
+    Route::post('/register/post', [AuthController::class, 'signUp'])->name('register.post');
 });
 
 Route::get('/logout', [AuthController::class, 'signOut'])->name('signOut');
